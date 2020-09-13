@@ -1,0 +1,120 @@
+{
+  "name": "@playkit-js/playkit-js-airplay",
+  "version": "0.0.1",
+  "keywords": [
+    "airplay",
+    "kaltura",
+    "player",
+    "playkit-js",
+    "playkit-js-airplay",
+    "html5 player"
+  ],
+  "homepage": "https://github.com/kaltura/playkit-js-airplay",
+  "bugs": {
+    "url": "https://github.com/kaltura/playkit-js-airplay/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kaltura/playkit-js-airplay"
+  },
+  "license": "AGPL-3.0",
+  "main": "dist/playkit-airplay.js",
+  "scripts": {
+    "prebuild": "npm run clean",
+    "build": "webpack --mode production",
+    "clean": "rm -rf ./dist",
+    "dev": "webpack-dev-server --mode development",
+    "docs:generate": "documentation build flow-typed/** src/** -f md -o docs/api.md",
+    "docs:serve": "documentation serve flow-typed/** src/** --watch",
+    "eslint": "eslint . --color",
+    "flow": "flow check",
+    "precommit": "lint-staged",
+    "prettier:fix": "prettier --write .",
+    "pushTaggedRelease": "git push --follow-tags --no-verify origin master",
+    "release": "standard-version",
+    "test": "NODE_ENV=test karma start --color --mode development",
+    "watch": "webpack --progress --colors --watch --mode development"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{json,md,scss}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-proposal-decorators": "^7.10.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.10.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/plugin-transform-classes": "^7.10.4",
+    "@babel/plugin-transform-flow-strip-types": "^7.10.4",
+    "@babel/plugin-transform-property-mutators": "^7.10.4",
+    "@babel/plugin-transform-react-jsx": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-flow": "^7.10.4",
+    "@babel/register": "^7.10.5",
+    "@playkit-js/playkit-js": "0.63.0",
+    "@playkit-js/playkit-js-ui": "0.58.1",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-istanbul": "^6.0.0",
+    "chai": "^4.2.0",
+    "cross-env": "^7.0.2",
+    "css-loader": "^4.0.0",
+    "documentation": "latest",
+    "eslint": "^7.4.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-flowtype": "^5.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-mocha-no-only": "^1.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.3",
+    "flow-bin": "^0.129.0",
+    "husky": "^4.2.5",
+    "istanbul": "^0.4.5",
+    "kaltura-player-js": "https://github.com/kaltura/kaltura-player-js.git#v0.56.0",
+    "karma": "^5.1.0",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-cli": "^2.0.0",
+    "karma-coverage": "^2.0.2",
+    "karma-firefox-launcher": "^1.3.0",
+    "karma-ie-launcher": "^1.0.0",
+    "karma-mocha": "^2.0.1",
+    "karma-mocha-reporter": "^2.2.5",
+    "karma-safari-launcher": "^1.0.0",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^4.0.2",
+    "lint-staged": "^10.2.11",
+    "mocha": "^8.0.1",
+    "mocha-cli": "^1.0.1",
+    "node-sass": "^4.14.1",
+    "prettier": "^2.0.5",
+    "sass-loader": "^10.0.1",
+    "sinon": "^9.0.2",
+    "sinon-chai": "^3.5.0",
+    "standard-version": "^6.0.1",
+    "style-loader": "^1.2.1",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "peerDependencies": {
+    "@playkit-js/playkit-js": "0.63.0",
+    "kaltura-player-js": "https://github.com/kaltura/kaltura-player-js.git#v0.56.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "kcc": {
+    "name": "playkit-airplay"
+  }
+}
