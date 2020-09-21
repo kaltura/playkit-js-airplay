@@ -8,13 +8,16 @@ import {EventType} from '../event-type';
 
 const {h, preact, Components, style, Event, Utils, redux, Reducers} = ui;
 const {Component} = preact;
-const {Icon, IconType, withPlayer} = Components;
+const {Icon, withPlayer} = Components;
 const {withEventManager} = Event;
 const {bindActions} = Utils;
 const {shell} = Reducers;
 const {actions} = shell;
 const {connect} = redux;
 const {FakeEvent} = core;
+
+const ICON_SVG: string =
+  'M785.597 704l-55.273-64h37.887c17.556 0 31.789-14.235 31.789-31.858v-288.283c0-17.595-14.238-31.858-31.789-31.858h-512.423c-17.556 0-31.789 14.235-31.789 31.858v288.283c0 17.595 14.238 31.858 31.789 31.858h40.032l-54.575 64h-49.167c-17.717 0-32.079-14.365-32.079-32.239v-415.521c0-17.805 14.063-32.239 32.079-32.239h639.842c17.717 0 32.079 14.365 32.079 32.239v415.521c0 17.805-14.063 32.239-32.079 32.239h-46.324zM491.273 509.426c11.447-13.424 30.248-13.282 41.719 0l225.536 261.147c11.593 13.424 6.771 24.306-11.069 24.306h-467.54c-17.707 0-22.66-11.025-11.334-24.306l222.687-261.147z';
 
 @withPlayer
 @withEventManager
@@ -30,6 +33,8 @@ class AirPlayButton extends Component {
     this.props.eventManager.listen(this.props.player, EventType.AIRPLAY_STARTED, this.airPlayStartedHandler);
     this.props.eventManager.listen(this.props.player, EventType.AIRPLAY_ENDED, this.airPlayEndedHandler);
   }
+
+  getIconPath = (color: string) => `<path fill="${color}" d="${ICON_SVG}"/>`;
 
   airPlayAvailabilityChangedHandler = (event: FakeEvent) => {
     this.setState({isAvailable: event.payload.isAvailable});
@@ -50,7 +55,7 @@ class AirPlayButton extends Component {
     return (
       <div role="button" className={style.controlButtonContainer}>
         <button id="airPlayButton" className={style.controlButton} onClick={props.startAirplay}>
-          <Icon type={this.state.isActive ? IconType.AirPlayActive : IconType.AirPlay} />
+          <Icon path={this.getIconPath(this.state.isActive ? style.brandColor : style.white)} />
         </button>
       </div>
     );
