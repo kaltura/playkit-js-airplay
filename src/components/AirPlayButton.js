@@ -51,7 +51,9 @@ class AirPlayButton extends Component {
   };
 
   render(props: Object) {
-    if (!this.state.isAvailable) return undefined;
+    if (!this.state.isAvailable) {
+      return undefined;
+    }
     return (
       <div role="button" className={style.controlButtonContainer}>
         <button id="airPlayButton" className={style.controlButton} onClick={props.startAirplay}>
