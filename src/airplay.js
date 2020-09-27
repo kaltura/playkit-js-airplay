@@ -5,6 +5,8 @@ import {EventType} from './event-type';
 
 const {Env, FakeEvent} = core;
 
+const pluginName: string = 'airplay';
+
 class AirPlay extends BasePlugin {
   static defaultConfig: Object = {};
 
@@ -64,4 +66,4 @@ class AirPlay extends BasePlugin {
   };
 }
 
-export {AirPlay};
+export {AirPlay, pluginName};
