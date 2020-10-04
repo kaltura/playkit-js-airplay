@@ -30,6 +30,8 @@ class AirPlay extends BasePlugin {
         get: AirPlayButton,
         beforeComponent: 'PictureInPicture',
         props: {
+          title: 'AirPlay',
+          turnOff: 'Turn off AirPlay',
           startAirplay: this.startAirplay
         }
       }

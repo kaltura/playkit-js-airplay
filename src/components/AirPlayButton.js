@@ -7,10 +7,9 @@ import {ui, core} from 'kaltura-player-js';
 import {EventType} from '../event-type';
 import {pluginName} from '../airplay';
 
-const {h, preact, preacti18n, Components, style, Event, Utils, redux, Reducers} = ui;
+const {h, preact, Components, style, Event, Utils, redux, Reducers} = ui;
 const {Component} = preact;
-// const {withText} = preacti18n;
-const {Icon, IconState, withPlayer /*, Tooltip */} = Components;
+const {Icon, IconState, withPlayer, Tooltip} = Components;
 const {withEventManager} = Event;
 const {bindActions} = Utils;
 const {shell} = Reducers;
@@ -24,10 +23,6 @@ const ICON_PATH: string =
 @withPlayer
 @withEventManager
 @connect(null, bindActions(actions))
-// @withText({
-//   title: 'airplay.title',
-//   turnOff: 'airplay.turn_off'
-// })
 class AirPlayButton extends Component {
   state: Object = {
     isActive: false,
@@ -60,11 +55,11 @@ class AirPlayButton extends Component {
     }
     return (
       <div className={style.controlButtonContainer}>
-        {/*<Tooltip label={this.state.isActive ? this.props.turnOff : this.props.title}>*/}
-        <button id="airPlayButton" className={style.controlButton} onClick={props.startAirplay}>
-          <Icon id={pluginName} path={ICON_PATH} state={this.state.isActive ? IconState.ACTIVE : IconState.INACTIVE} />
-        </button>
-        {/*</Tooltip>*/}
+        <Tooltip label={this.state.isActive ? this.props.turnOff : this.props.title}>
+          <button id="airPlayButton" className={style.controlButton} onClick={props.startAirplay}>
+            <Icon id={pluginName} path={ICON_PATH} state={this.state.isActive ? IconState.ACTIVE : IconState.INACTIVE} />
+          </button>
+        </Tooltip>
       </div>
     );
   }
