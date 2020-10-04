@@ -2,7 +2,7 @@
 
 ##### Prerequisites
 
-- [ ] Have you checked for duplicate [issues](https://github.com/kaltura/playkit-js-ima/issues): **\_\_**
+- [ ] Have you checked for duplicate [issues](https://github.com/kaltura/playkit-js-airplay/issues): **\_\_**
 - [ ] Which Plugin [version](https://github.com/kaltura/playkit-js-ima/releases) are you using: **\_\_**
 - [ ] Can you reproduce the issue with our latest release version: **\_\_**
 - [ ] Can you reproduce the issue with the latest code from master: **\_\_**
