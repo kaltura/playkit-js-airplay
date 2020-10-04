@@ -16,13 +16,6 @@ class AirPlay extends BasePlugin {
 
   _isActive: boolean = false;
 
-  _translations: {[key: string]: string} = {
-    en: {
-      title: 'AirPlay',
-      turnOff: 'Turn off AirPlay'
-    }
-  };
-
   constructor(name: string, player: KalturaPlayer, config: Object) {
     super(name, player, config);
     this._attachListeners();
@@ -37,8 +30,7 @@ class AirPlay extends BasePlugin {
         get: AirPlayButton,
         beforeComponent: 'PictureInPicture',
         props: {
-          startAirplay: this.startAirplay,
-          ...this._translations.en
+          startAirplay: this.startAirplay
         }
       }
     ];

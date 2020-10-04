@@ -29,6 +29,11 @@ class AirPlayButton extends Component {
     isAvailable: false
   };
 
+  _defaultTranslation: {[key: string]: string} = {
+    title: 'AirPlay',
+    turnOff: 'Turn off AirPlay'
+  };
+
   componentWillMount() {
     this.props.eventManager.listen(this.props.player, EventType.AIRPLAY_AVAILABILITY_CHANGED, this.airPlayAvailabilityChangedHandler);
     this.props.eventManager.listen(this.props.player, EventType.AIRPLAY_STARTED, this.airPlayStartedHandler);
@@ -53,9 +58,11 @@ class AirPlayButton extends Component {
     if (!this.state.isAvailable) {
       return undefined;
     }
+    const title = this.props.title || this._defaultTranslation.title;
+    const turnOff = this.props.turnOff || this._defaultTranslation.turnOff;
     return (
       <div className={style.controlButtonContainer}>
-        <Tooltip label={this.state.isActive ? this.props.turnOff : this.props.title}>
+        <Tooltip label={this.state.isActive ? turnOff : title}>
           <button id="airPlayButton" className={style.controlButton} onClick={props.startAirplay}>
             <Icon id={pluginName} path={ICON_PATH} state={this.state.isActive ? IconState.ACTIVE : IconState.INACTIVE} />
           </button>
