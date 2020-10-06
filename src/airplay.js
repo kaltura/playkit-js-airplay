@@ -3,7 +3,7 @@ import {BasePlugin, core} from 'kaltura-player-js';
 import {AirPlayButton} from './components/AirPlayButton';
 import {EventType} from './event-type';
 
-const {Env, FakeEvent} = core;
+const {FakeEvent} = core;
 
 const pluginName: string = 'airplay';
 
@@ -11,7 +11,7 @@ class AirPlay extends BasePlugin {
   static defaultConfig: Object = {};
 
   static isValid() {
-    return Env.isSafari;
+    return !!window.WebKitPlaybackTargetAvailabilityEvent;
   }
 
   _isActive: boolean = false;
