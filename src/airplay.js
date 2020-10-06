@@ -65,7 +65,7 @@ class AirPlay extends BasePlugin {
 
   _activityChangedHandler = () => {
     this._isActive = !this._isActive;
-    this.logger.debug(`Activity changed to ${this._isActive}`);
+    this.logger.debug(`Activity changed to ${this._isActive.toString()}`);
     this.player.dispatchEvent(new FakeEvent(this._isActive ? EventType.AIRPLAY_STARTED : EventType.AIRPLAY_ENDED));
   };
 }
