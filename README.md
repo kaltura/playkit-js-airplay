@@ -9,7 +9,7 @@ PlayKit JS AirPlay plugin integrates [AirPlay Button] with the [Kaltura Player J
 
 PlayKit JS AirPlay is written in [ECMAScript6], statically analysed using [Flow] and transpiled in ECMAScript5 using [Babel].
 
-[AirPlay Button]: https://developer.apple.com/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls
+[airplay button]: https://developer.apple.com/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls
 [flow]: https://flow.org/
 [ecmascript6]: https://github.com/ericdouglas/ES6-Learning#articles--tutorials
 [babel]: https://babeljs.io
