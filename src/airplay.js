@@ -15,6 +15,7 @@ class AirPlay extends BasePlugin {
   }
 
   _isActive: boolean = false;
+  _wasPaused: boolean = false;
 
   constructor(name: string, player: KalturaPlayer, config: Object) {
     super(name, player, config);
@@ -39,6 +40,7 @@ class AirPlay extends BasePlugin {
   startAirplay = () => {
     this.logger.debug('Start airplay request');
     this.player.getVideoElement().webkitShowPlaybackTargetPicker();
+    this._wasPaused = this.player.paused;
   };
 
   _attachListeners() {
@@ -67,6 +69,10 @@ class AirPlay extends BasePlugin {
     this._isActive = !this._isActive;
     this.logger.debug(`Activity changed to ${this._isActive.toString()}`);
     this.player.dispatchEvent(new FakeEvent(this._isActive ? EventType.AIRPLAY_STARTED : EventType.AIRPLAY_ENDED));
+    if (this._isActive && !this._wasPaused) {
+      this.logger.debug(`Calling player play to sync UI`);
+      this.player.play();
+    }
   };
 }
 
