@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/kaltura/playkit-js-airplay/compare/v1.1.1...v1.1.2) (2021-07-01)
+
+
+### Bug Fixes
+
+* **FEC-11112:** if cast after the playback started, Play button appears instead of Pause and the scrubber doesn't progress ([#22](https://github.com/kaltura/playkit-js-airplay/issues/22)) ([bc69c50](https://github.com/kaltura/playkit-js-airplay/commit/bc69c50))
+
+
+### Build System
+
+* **FEC-10700:** Improvement for CI/CD ([#21](https://github.com/kaltura/playkit-js-airplay/issues/21)) ([480c458](https://github.com/kaltura/playkit-js-airplay/commit/480c458))
+
+
+
 ### [1.1.1](https://github.com/kaltura/playkit-js-airplay/compare/v1.1.0...v1.1.1) (2021-04-06)
 
 
