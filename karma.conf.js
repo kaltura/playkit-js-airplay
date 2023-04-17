@@ -1,13 +1,4 @@
-const isWindows = /^win/.test(process.platform);
-const isMacOS = /^darwin/.test(process.platform);
-// Create custom launcher in case running with Travis
-const customLaunchers = {
-  Safari_travis_ci: {
-    base: 'Safari',
-    flags: ['--no-sandbox', '--autoplay-policy=no-user-gesture-required']
-  }
-};
-
+//Create custom launcher in case running with Travis
 const launchers = {
   Safari_browser: {
     base: 'Safari',
@@ -20,8 +11,7 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     browserDisconnectTimeout: 30000,
     browserNoActivityTimeout: 60000,
-    customLaunchers: launchers,
-    browsers: ['Safari_browser'],
+    browsers: [],
     concurrency: 1,
     singleRun: true,
     colors: true,
@@ -49,16 +39,7 @@ module.exports = function (config) {
     }
   };
 
-  if (process.env.TRAVIS) {
-    karmaConf.customLaunchers = customLaunchers;
-    karmaConf.browsers = ['Safari_travis_ci'];
-  } else {
-    if (isWindows) {
-      karmaConf.browsers.push('IE');
-    } else if (isMacOS) {
-      karmaConf.browsers.push('Safari');
-    }
-  }
-
+  karmaConf.customLaunchers = launchers;
+  karmaConf.browsers = ['Safari_browser'];
   config.set(karmaConf);
 };
