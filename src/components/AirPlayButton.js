@@ -3,7 +3,7 @@
  * @jsx h
  * @ignore
  */
-import {ui, core} from 'kaltura-player-js';
+import {ui, core} from '@playkit-js/kaltura-player-js';
 import {EventType} from '../event-type';
 import {pluginName} from '../airplay';
 

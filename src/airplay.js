@@ -1,5 +1,5 @@
 // @flow
-import {BasePlugin, core} from 'kaltura-player-js';
+import {BasePlugin, core} from '@playkit-js/kaltura-player-js';
 import {AirPlayButton} from './components/AirPlayButton';
 import {EventType} from './event-type';
 
