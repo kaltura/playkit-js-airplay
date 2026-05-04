@@ -1,0 +1,132 @@
+{
+  "repositoryName": "playkit-js-airplay",
+  "packageName": "@playkit-js/playkit-js-airplay",
+  "version": "1.1.4",
+
+  "coreResponsibility": {
+    "summary": "A Kaltura Player JS plugin that integrates Apple AirPlay functionality for wireless media streaming to AirPlay-compatible devices such as Apple TV.",
+    "type": "Plugin",
+    "category": "Remote Playback / Casting"
+  },
+
+  "domainAndLogicOwnership": {
+    "featureOwnership": [
+      "AirPlay device detection and availability monitoring",
+      "AirPlay session start/stop management",
+      "AirPlay UI button component for player controls",
+      "WebKit playback target picker integration",
+      "AirPlay casting state management",
+      "Player UI synchronization during AirPlay sessions"
+    ],
+    "dataHandling": {
+      "stateManaged": [
+        "AirPlay availability state (isAvailable)",
+        "AirPlay active/inactive session state (isActive)",
+        "Player pause state before AirPlay initiation (wasPaused)"
+      ],
+      "eventsEmitted": [
+        "airplayavailabilitychanged - Fired when AirPlay device availability changes",
+        "airplaystarted - Fired when AirPlay streaming begins",
+        "airplayended - Fired when AirPlay streaming ends"
+      ]
+    }
+  },
+
+  "integrationPoints": {
+    "upstream": {
+      "repositories": [
+        {
+          "name": "kaltura-player-js",
+          "package": "@playkit-js/kaltura-player-js",
+          "relationship": "Peer dependency - provides core player infrastructure, BasePlugin class, UI components system, and event management"
+        }
+      ],
+      "browserAPIs": [
+        "WebKitPlaybackTargetAvailabilityEvent - Safari/WebKit API for AirPlay availability detection",
+        "HTMLVideoElement.webkitShowPlaybackTargetPicker() - Native API to show AirPlay device picker",
+        "webkitplaybacktargetavailabilitychanged event - AirPlay device availability changes",
+        "webkitcurrentplaybacktargetiswirelesschanged event - AirPlay session state changes"
+      ]
+    },
+    "downstream": {
+      "consumers": [
+        "Kaltura Player web applications embedding the plugin",
+        "Safari browser users on macOS and iOS with AirPlay-compatible devices"
+      ],
+      "uiIntegration": [
+        "AirPlayButton component injected into BottomBarRightControls container",
+        "Supports Playback and Live presets",
+        "Positioned before PictureInPicture button"
+      ]
+    },
+    "externalAPIs": {
+      "appleWebKitAPIs": [
+        "WebKitPlaybackTargetAvailabilityEvent",
+        "webkitShowPlaybackTargetPicker",
+        "webkitplaybacktargetavailabilitychanged",
+        "webkitcurrentplaybacktargetiswirelesschanged"
+      ],
+      "thirdPartySDKs": []
+    }
+  },
+
+  "technicalStack": {
+    "primaryLanguages": ["JavaScript (ES6+)", "Flow (static type checking)"],
+    "frameworks": ["Preact (UI components)", "Redux (state management)"],
+    "buildTools": ["Webpack", "Babel"],
+    "testingFrameworks": ["Karma", "Mocha", "Chai", "Sinon"],
+    "codeQuality": ["ESLint", "Prettier", "Flow"]
+  },
+
+  "entryPoints": {
+    "sourceOfTruth": [
+      {
+        "file": "src/index.js",
+        "purpose": "Main entry point - exports plugin, events, registers plugin with Kaltura Player"
+      },
+      {
+        "file": "src/airplay.js",
+        "purpose": "Core AirPlay plugin class - extends BasePlugin, manages AirPlay lifecycle and events"
+      },
+      {
+        "file": "src/components/AirPlayButton.js",
+        "purpose": "UI component for AirPlay button in player controls"
+      },
+      {
+        "file": "src/event-type.js",
+        "purpose": "Event type constants for AirPlay state changes"
+      }
+    ],
+    "buildOutput": "dist/playkit-airplay.js",
+    "configurationKey": "plugins.airplay"
+  },
+
+  "triageKeywords": [
+    "airplay",
+    "AirPlay",
+    "apple tv",
+    "AppleTV",
+    "wireless streaming",
+    "casting safari",
+    "webkitShowPlaybackTargetPicker",
+    "WebKitPlaybackTargetAvailabilityEvent",
+    "webkitplaybacktargetavailabilitychanged",
+    "webkitcurrentplaybacktargetiswirelesschanged",
+    "airplay button missing",
+    "airplay not working",
+    "airplay availability",
+    "airplay icon",
+    "safari wireless playback",
+    "playkit-airplay",
+    "airplaystarted",
+    "airplayended",
+    "airplayavailabilitychanged"
+  ],
+
+  "browserCompatibility": {
+    "primary": "Safari (macOS, iOS) - WebKit browsers with AirPlay support",
+    "requirement": "Requires WebKitPlaybackTargetAvailabilityEvent API support"
+  },
+
+  "license": "AGPL-3.0"
+}
