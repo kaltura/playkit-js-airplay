@@ -16,6 +16,7 @@ class AirPlay extends BasePlugin {
 
   _isActive: boolean = false;
   _wasPaused: boolean = false;
+  _isAvailable: boolean = false;
 
   constructor(name: string, player: KalturaPlayer, config: Object) {
     super(name, player, config);
@@ -31,7 +32,8 @@ class AirPlay extends BasePlugin {
         get: AirPlayButton,
         beforeComponent: 'PictureInPicture',
         props: {
-          startAirplay: this.startAirplay
+          startAirplay: this.startAirplay,
+          getAirPlayAvailability: () => this._isAvailable
         }
       }
     ];
@@ -45,21 +47,31 @@ class AirPlay extends BasePlugin {
 
   _attachListeners() {
     if (window.WebKitPlaybackTargetAvailabilityEvent) {
-      this.eventManager.listenOnce(this.player, this.player.Event.SOURCE_SELECTED, () => {
-        this.logger.debug('Attach webkit listeners');
-        this.eventManager.listen(this.player.getVideoElement(), 'webkitplaybacktargetavailabilitychanged', this._availabilityChangedHandler);
-        this.eventManager.listen(this.player.getVideoElement(), 'webkitcurrentplaybacktargetiswirelesschanged', this._activityChangedHandler);
+      this.eventManager.listen(this.player, this.player.Event.SOURCE_SELECTED, () => {
+        this._registerWebkitListeners();
       });
     }
+  }
+
+  _registerWebkitListeners() {
+    const videoElement = this.player.getVideoElement();
+    if (!videoElement) return;
+    this.logger.debug('Attach webkit listeners');
+    this.eventManager.unlisten(videoElement, 'webkitplaybacktargetavailabilitychanged');
+    this.eventManager.unlisten(videoElement, 'webkitcurrentplaybacktargetiswirelesschanged');
+    this.eventManager.listen(videoElement, 'webkitplaybacktargetavailabilitychanged', this._availabilityChangedHandler);
+    this.eventManager.listen(videoElement, 'webkitcurrentplaybacktargetiswirelesschanged', this._activityChangedHandler);
   }
 
   _availabilityChangedHandler = (event: Event & {availability: string}) => {
     this.logger.debug(`Availability changed to ${event.availability}`);
     switch (event.availability) {
       case 'available':
+        this._isAvailable = true;
         this.player.dispatchEvent(new FakeEvent(EventType.AIRPLAY_AVAILABILITY_CHANGED, {isAvailable: true}));
         break;
       case 'not-available':
+        this._isAvailable = false;
         this.player.dispatchEvent(new FakeEvent(EventType.AIRPLAY_AVAILABILITY_CHANGED, {isAvailable: false}));
         break;
     }

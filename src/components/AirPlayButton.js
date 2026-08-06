@@ -38,6 +38,9 @@ class AirPlayButton extends Component {
     this.props.eventManager.listen(this.props.player, EventType.AIRPLAY_AVAILABILITY_CHANGED, this.airPlayAvailabilityChangedHandler);
     this.props.eventManager.listen(this.props.player, EventType.AIRPLAY_STARTED, this.airPlayStartedHandler);
     this.props.eventManager.listen(this.props.player, EventType.AIRPLAY_ENDED, this.airPlayEndedHandler);
+    if (typeof this.props.getAirPlayAvailability === 'function' && this.props.getAirPlayAvailability()) {
+      this.setState({isAvailable: true});
+    }
   }
 
   airPlayAvailabilityChangedHandler = (event: FakeEvent) => {
