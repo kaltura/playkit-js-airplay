@@ -45,7 +45,7 @@ class AirPlay extends BasePlugin {
 
   _attachListeners() {
     if (window.WebKitPlaybackTargetAvailabilityEvent) {
-      this.eventManager.listenOnce(this.player, this.player.Event.SOURCE_SELECTED, () => {
+      this.eventManager.listenOnce(this.player, this.player.Event.LOAD_START, () => {
         this.logger.debug('Attach webkit listeners');
         this.eventManager.listen(this.player.getVideoElement(), 'webkitplaybacktargetavailabilitychanged', this._availabilityChangedHandler);
         this.eventManager.listen(this.player.getVideoElement(), 'webkitcurrentplaybacktargetiswirelesschanged', this._activityChangedHandler);
